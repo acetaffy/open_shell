@@ -138,7 +138,7 @@ iptables -I INPUT -j BANNED 2>/dev/null || true
 iptables -I BANNED -m set --match-set banned_ips src -j DROP 2>/dev/null || true
 
 # 下载并处理 IP 黑名单
-wget -q https://raw.githubusercontent.com/borestad/blocklist-abuseipdb/main/abuseipdb-s100-1d.ipv4 -O abuseipdb-s100-1d.ipv4.tmp
+wget -q https://raw.githubusercontent.com/borestad/blocklist-abuseipdb/main/abuseipdb-s100-7d.ipv4 -O abuseipdb-s100-1d.ipv4.tmp
 
 if [ -s abuseipdb-s100-1d.ipv4.tmp ]; then
     mv abuseipdb-s100-1d.ipv4.tmp abuseipdb-s100-1d.ipv4
@@ -158,7 +158,7 @@ cd /root/cron || exit 1
 logger "开始更新 IP 黑名单"
 
 # 下载失败时使用备份文件
-if ! wget -q https://raw.githubusercontent.com/borestad/blocklist-abuseipdb/main/abuseipdb-s100-1d.ipv4 -O abuseipdb-s100-1d.ipv4.tmp; then
+if ! wget -q https://raw.githubusercontent.com/borestad/blocklist-abuseipdb/main/abuseipdb-s100-7d.ipv4 -O abuseipdb-s100-1d.ipv4.tmp; then
     logger "下载失败，使用上次的黑名单"
     exit 1
 fi
